@@ -57,3 +57,22 @@ The script begins by loading the pre-trained T5 model and tokenizer from the spe
 For each selected recipe, the input string is passed to the T5 model, which generates a corresponding recipe using beam search decoding. The generated recipe is decoded and saved to an output file. By default, the script generates five unique recipes, but this can be adjusted based on the user’s needs. Each recipe is stored in a separate line in the output file.
 
 This script serves as a tool for generating diverse and novel recipes by leveraging a fine-tuned T5 model, showcasing the model's potential in recipe creation based on random ingredients and phrases from the dataset.
+
+
+# Shifting to GPT-2
+This script generates recipes using a fine-tuned GPT-2 model based on a list of ingredients. Initially, the script loads a preprocessed dataset of ingredients, selects the first 500 lines, and processes them to create recipe inputs for GPT-2. The ingredients are used to generate a structured recipe by feeding them into the GPT-2 model. The model then generates a recipe text that is saved to a file.
+
+After experimenting with T5-based models and not achieving satisfactory results, we decided to shift to GPT-2, which is more suitable for this kind of generative task. The GPT-2 model is capable of producing coherent and diverse outputs, especially for creative text generation tasks like recipe creation.
+
+The script works by first reading the preprocessed dataset and extracting the ingredients for the first 500 entries. The ingredients are formatted into a string and passed to the GPT-2 model, which then generates a recipe based on that input. The generated recipes are stored in an output file.
+
+The parameters used for generating recipes in GPT-2 include:
+- `max_length=200` to control the maximum length of the generated recipe
+- `temperature=1.0` for randomness in generation
+- `top_k=50` and `top_p=0.95` for controlling the diversity of the generated text using sampling
+- `do_sample=True` to enable sampling, allowing the model to generate different outputs for the same input.
+
+The generated recipes are saved to a text file, with one recipe per line. 
+
+Note: This approach was chosen after extensive experimentation with T5-based models, where the results were not as satisfactory for generating diverse recipes. The GPT-2 model has shown improved performance and creativity in this task.
+
