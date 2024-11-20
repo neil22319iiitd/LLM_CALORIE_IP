@@ -11,7 +11,5 @@ The script groups ingredient-related fields, merges them with metadata like calo
 This script preprocesses the `final_combined.csv` file by standardizing and cleaning its fields. It performs the following steps:  
 1. Converts all fields (`steps`, `ingredient_Phrase`, `ingredient`, `Region`, `Sub_region`) to lowercase for uniformity.  
 2. Splits the `steps` field into a list of individual instructions, removing unnecessary spaces and ensuring clear segmentation.
+3. The processed data is saved as `preprocessed_output.csv`.
 
-## Output
-
-The processed data is saved as `preprocessed_output.csv`,
