@@ -48,3 +48,12 @@ The evaluation results achieved with this script were as follows:
 The **BLEU score** measures the overlap of n-grams between the generated and true outputs, achieving a high score of 0.94, indicating significant lexical similarity. The **BERTScore**, which leverages semantic similarity, scored 0.45, reflecting moderate semantic alignment. Lastly, the **METEOR score**, which considers synonymy and alignment, was 0.37, indicating room for improvement in capturing linguistic nuances.
 
 This evaluation script provides a robust framework for assessing the quality and accuracy of recipe generation by examining both lexical and semantic alignments between generated and ground-truth outputs.
+
+# Novel Recipe Generation Script
+This script generates novel recipes using a fine-tuned T5-based model. It randomly selects ingredients and ingredient phrases from a preprocessed dataset, formats them into a structured input, and then uses the T5 model to generate creative recipe instructions.
+
+The script begins by loading the pre-trained T5 model and tokenizer from the specified file paths. It then samples random recipes from the provided dataset, extracting ingredient phrases and base ingredients. These are formatted into an input string using custom tokens: `<BEGIN_RECIPE>`, `<BEGIN_INPUT>`, `<NEXT_INPUT>`, `<END_INPUT>`, `<BEGIN_INGREDS>`, `<NEXT_INGREDS>`, and `<END_INGREDS>`. 
+
+For each selected recipe, the input string is passed to the T5 model, which generates a corresponding recipe using beam search decoding. The generated recipe is decoded and saved to an output file. By default, the script generates five unique recipes, but this can be adjusted based on the user’s needs. Each recipe is stored in a separate line in the output file.
+
+This script serves as a tool for generating diverse and novel recipes by leveraging a fine-tuned T5 model, showcasing the model's potential in recipe creation based on random ingredients and phrases from the dataset.
